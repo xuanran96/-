@@ -145,6 +145,10 @@ def run(plan: dict, root: Path, output: Path) -> dict:
 
 
 def main() -> int:
+    # Redirected Windows streams may default to a code page without Chinese.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("plan", type=Path)
     parser.add_argument("--root", type=Path, required=True, help="待验收代码目录；所有命令在此执行")

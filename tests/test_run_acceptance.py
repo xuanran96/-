@@ -1,5 +1,6 @@
 import copy
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -108,8 +109,10 @@ def test_cli_validation_does_not_execute(plan, tmp_path):
     path = tmp_path / "plan.json"
     path.write_text(json.dumps(plan), encoding="utf-8")
     cli = Path(__file__).resolve().parents[1] / "scripts" / "run_acceptance.py"
-    result = subprocess.run([sys.executable, str(cli), str(path), "--root", str(tmp_path)], capture_output=True)
+    result = subprocess.run([sys.executable, str(cli), str(path), "--root", str(tmp_path)],
+                            capture_output=True, env={**os.environ, "PYTHONIOENCODING": "cp1252"})
     assert result.returncode == 0
+    assert "配置有效" in result.stdout.decode("utf-8")
     assert not (tmp_path / "marker").exists()
 
 
@@ -125,8 +128,10 @@ def test_cli_exit_codes(plan, tmp_path, expected, status):
     path.write_text(json.dumps(plan), encoding="utf-8")
     cli = Path(__file__).resolve().parents[1] / "scripts" / "run_acceptance.py"
     result = subprocess.run([sys.executable, str(cli), str(path), "--root", str(tmp_path),
-                             "--output", str(tmp_path / "evidence"), "--run"], capture_output=True)
+                             "--output", str(tmp_path / "evidence"), "--run"], capture_output=True,
+                            env={**os.environ, "PYTHONIOENCODING": "cp1252"})
     assert result.returncode == expected
+    assert json.loads(result.stdout.decode("utf-8"))["status"] == status
     reports = list((tmp_path / "evidence").glob("*/report.json"))
     assert json.loads(reports[0].read_text(encoding="utf-8"))["status"] == status
 

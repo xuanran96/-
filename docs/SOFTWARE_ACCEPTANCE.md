@@ -75,6 +75,7 @@ python scripts/run_acceptance.py /path/to/acceptance-plan.json --root /path/to/t
 不管理服务及孙进程。命令输出保存在本地，检查程序应避免输出密钥或敏感数据。
 检查命令应为非交互命令，标准输入关闭；日志按 UTF-8 解码，Python 子进程显式使用
 UTF-8 输出。其他语言的程序也应配置 UTF-8 输出，避免本地编码影响断言。
+验收 CLI 自身的标准输出与错误输出也使用 UTF-8，支持英文 Windows 环境和重定向报告。
 
 每次运行创建独立证据目录，保存配置快照、配置摘要、时间、实际命令、原始输出与
 `report.json`，不会覆盖前一轮。AI 在 `03-acceptance.md` 中补充源码版本（包括工作区
