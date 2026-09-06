@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "candidates": [
+    {
+      "id": "RC-001",
+      "scenario": "反复出现的使用场景",
+      "trigger": "什么时候需要它",
+      "inputs": [],
+      "steps": [],
+      "outputs": [],
+      "completion_checks": [],
+      "boundaries": [],
+      "candidate_signals": {
+        "recurs_periodically": false,
+        "similar_input_shape": false,
+        "stable_steps": false,
+        "clear_artifact": false,
+        "fixed_acceptance": false,
+        "repeated_constraints": false,
+        "omission_causes_rework": false
+      },
+      "evidence": {
+        "occurrences": 0,
+        "independent_projects_or_sessions": 0,
+        "verified_successes": 0,
+        "verified_attempts": 0,
+        "historical_replays": 0,
+        "historical_replays_covered": 0,
+        "sources": []
+      },
+      "safety_review": {
+        "secrets_removed": false,
+        "personal_data_removed": false,
+        "sensitive_business_content_removed": false
+      },
+      "status": "collecting",
+      "user_approved": false
+    }
+  ]
+}

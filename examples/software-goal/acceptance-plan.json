@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "goal": "提供可运行的摄氏转华氏 CLI，支持负数并明确拒绝非法输入",
+  "criteria": [
+    {"id": "AC-01", "description": "输入 0 摄氏度输出 32.0 F", "checks": ["zero"]},
+    {"id": "AC-02", "description": "输入 -40 摄氏度输出 -40.0 F", "checks": ["negative"]},
+    {"id": "AC-03", "description": "非数字和非有限值返回错误及非零退出码", "checks": ["invalid", "nonfinite"]}
+  ],
+  "checks": [
+    {"id": "zero", "kind": "runtime", "command": ["{python}", "temperature.py", "0"], "stdout_contains": ["32.0 F"]},
+    {"id": "negative", "kind": "runtime", "command": ["{python}", "temperature.py", "-40"], "stdout_contains": ["-40.0 F"]},
+    {"id": "invalid", "kind": "runtime", "command": ["{python}", "temperature.py", "abc"], "expected_exit": 2, "stderr_contains": ["invalid float value"]},
+    {"id": "nonfinite", "kind": "runtime", "command": ["{python}", "temperature.py", "nan"], "expected_exit": 2, "stderr_contains": ["temperature must be finite"]}
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "轻量项目协作"
+  short_description: "按最终目标推进项目，支持代码与程序验收、功能完善、修复和复测"
+  default_prompt: "使用 $lightweight-project 按我的最终目标推进项目；如果是代码或程序，请实际运行、补齐功能并修复复测到达标。"

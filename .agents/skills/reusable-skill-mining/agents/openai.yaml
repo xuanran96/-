@@ -1,0 +1,4 @@
+interface:
+  display_name: "复用技能候选评审"
+  short_description: "从分散项目和聊天中提取并量化评审可复用技能候选"
+  default_prompt: "使用 $reusable-skill-mining 评估这些重复做法是否适合沉淀为技能。"

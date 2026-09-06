@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目快速导览"
+  short_description: "用仓库文件证据快速说明技术栈、模块、数据流和风险"
+  default_prompt: "使用 $project-overview 帮我快速了解当前项目。"

@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "goal": "替换为用户的最终目标，并把下列示例测试名改为目标项目的实际测试",
+  "criteria": [
+    {
+      "id": "AC-01",
+      "description": "替换为核心用户操作、输入和预期结果",
+      "checks": ["core-flow"]
+    },
+    {
+      "id": "AC-02",
+      "description": "替换为需要实际交互或主观业务确认的条件；不适用时删除该条件",
+      "manual": true
+    }
+  ],
+  "checks": [
+    {
+      "id": "core-flow",
+      "kind": "runtime",
+      "command": ["{python}", "-m", "pytest", "tests/test_acceptance.py"],
+      "timeout_seconds": 120,
+      "expected_exit": 0
+    }
+  ]
+}

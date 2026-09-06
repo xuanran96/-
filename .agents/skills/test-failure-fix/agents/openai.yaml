@@ -1,0 +1,4 @@
+interface:
+  display_name: "测试失败修复"
+  short_description: "复现首个真实失败、修复根因并完成相关回归"
+  default_prompt: "使用 $test-failure-fix 修复当前测试或 CI 失败。"
