@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "goal": "交付四页面共用持久化数据、具备登记移位取出追溯闭环的独立 Web 版",
+  "criteria": [
+    {"id":"W01","description":"前端与接口通过类型检查","checks":["types"]},
+    {"id":"W02","description":"登记防重、移位守恒、容量/异常校验、取出状态转换与错误恢复","checks":["domain"]},
+    {"id":"W03","description":"实际 D1 接口持久化、并发预留、错码拦截和出库轨迹","checks":["api"]},
+    {"id":"W04","description":"实际扫码枪、摄像头和标签打印机现场验证","checks":[],"manual":true},
+    {"id":"W05","description":"浏览器逐按钮交互验证","checks":[],"manual":true}
+  ],
+  "checks":[
+    {"id":"types","kind":"code","command":["node","node_modules/typescript/bin/tsc","--noEmit"],"timeout_seconds":60},
+    {"id":"domain","kind":"runtime","command":["node","--experimental-strip-types","--test","tests/warehouse.test.ts"],"timeout_seconds":60},
+    {"id":"api","kind":"runtime","command":["node","tests/api.test.mjs"],"timeout_seconds":60,"stdout_contains":["PASS: D1 persistence"]}
+  ]
+}
